@@ -1,0 +1,14 @@
+{
+  "name": "@bensku/paper-types",
+  "version": "VERSION",
+  "description": "Paper API types",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Valtakausi/paper-types.git",
+    "directory": "types"
+  },
+  "author": "bensku",
+  "dependencies": {
+    "@bensku/java-core-types": "^11.0.8-e8b1a07"
+  }
+}

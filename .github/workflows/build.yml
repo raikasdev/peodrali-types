@@ -1,0 +1,40 @@
+name: Type generation
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download sources
+        run: |
+          curl https://papermc.io/repo/repository/maven-snapshots/com/destroystokyo/paper/paper-api/1.16.3-R0.1-SNAPSHOT/paper-api-1.16.3-R0.1-20201023.074855-56-sources.jar >paper-sources.jar
+          curl https://papermc.io/repo/repository/Sonatype-OSS-Proxy/net/md-5/bungeecord-chat/1.16-R0.3/bungeecord-chat-1.16-R0.3-sources.jar >chat-sources.jar
+      - name: Generate patched Paper jar
+        run: |
+          curl https://papermc.io/api/v1/paper/1.16.3/246/download >paperclip.jar
+          java -jar paperclip.jar || true # Will crash due to missing EULA; we WANT that
+          mv cache/patched_1.16.3.jar paper.jar
+      - name: Generate Paper types
+        run: >-
+          java -jar java-ts-bind-all.jar
+          --in paper-sources.jar --out types --symbols paper.jar
+      - name: Generate Bungeecord Chat types
+        run: >-
+          java -jar java-ts-bind-all.jar
+          --in chat-sources.jar --out types --symbols paper.jar
+      - uses: actions/setup-node@master
+        with:
+          registry-url: 'https://registry.npmjs.org'
+        if: github.ref == 'refs/heads/master'
+      - name: Publish to npm
+        run: |
+          sed -i "s/VERSION/1.16.3-$(git rev-parse --short $GITHUB_SHA)/g" types/package.json
+          npm publish --access=public types
+        if: github.ref == 'refs/heads/master'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
