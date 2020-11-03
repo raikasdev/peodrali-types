@@ -9,6 +9,6 @@
   },
   "author": "bensku",
   "dependencies": {
-    "@bensku/java-core-types": "^11.0.8-e8b1a07"
+    "@bensku/java-core-types": "latest"
   }
 }
