@@ -12,7 +12,7 @@ jobs:
           java-version: 11
       - name: Download sources
         run: |
-          curl https://papermc.io/repo/repository/maven-snapshots/com/destroystokyo/paper/paper-api/1.16.4-R0.1-SNAPSHOT/paper-api-1.16.4-R0.1-20201228.122228-88-sources.jar >paper-sources.jar
+          curl https://papermc.io/repo/repository/maven-snapshots/com/destroystokyo/paper/paper-api/1.16.5-R0.1-SNAPSHOT/paper-api-1.16.5-R0.1-20210116.022558-1-sources.jar >paper-sources.jar
           curl https://papermc.io/repo/repository/Sonatype-OSS-Proxy/net/md-5/bungeecord-chat/1.16-R0.3/bungeecord-chat-1.16-R0.3-sources.jar >chat-sources.jar
       - name: Generate patched Paper jar
         run: |
@@ -33,7 +33,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
       - name: Publish to npm
         run: |
-          sed -i "s/VERSION/1.16.3-$(git rev-parse --short $GITHUB_SHA)/g" types/package.json
+          sed -i "s/VERSION/1.16.5-$(git rev-parse --short $GITHUB_SHA)/g" types/package.json
           npm publish --access=public types
         if: github.ref == 'refs/heads/master'
         env:
