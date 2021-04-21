@@ -1,0 +1,21 @@
+{
+  "name": "@craftjs-types/bungeecord-chat",
+  "version": "1.16.4-GIT_SHA",
+  "description": "Bungeecord chat types",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Valtakausi/craftjs-types.git",
+    "directory": "bungeecord-chat"
+  },
+  "author": "bensku",
+  "dependencies": {
+    "@craftjs-types/java.base": "latest"
+  },
+  "tsbindOptions": {
+    "artifact": "net.md-5:bungeecord-chat:1.16-R0.4",
+    "repo": "https://repo1.maven.org/maven2",
+    "out": "bungeecord-chat",
+    "symbols": ["paper_symbols.jar"],
+    "index": true
+  }
+}

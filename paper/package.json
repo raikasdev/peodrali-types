@@ -1,0 +1,23 @@
+{
+  "name": "@craftjs-types/paper",
+  "version": "1.16.5-GIT_SHA",
+  "description": "Paper API types",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Valtakausi/craftjs-types.git",
+    "directory": "paper"
+  },
+  "author": "bensku",
+  "dependencies": {
+    "@craftjs-types/java.base": "latest",
+    "@craftjs-types/bungeecord-chat": "latest"
+  },
+  "tsbindOptions": {
+    "artifact": "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT",
+    "repo": "https://papermc.io/repo/repository/maven-public",
+    "out": "paper",
+    "symbols": ["paper_symbols.jar"],
+    "blacklist": ["net.kyori.adventure"],
+    "index": true
+  }
+}

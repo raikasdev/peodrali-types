@@ -10,31 +10,27 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Download sources
-        run: |
-          curl https://papermc.io/repo/repository/maven-snapshots/com/destroystokyo/paper/paper-api/1.16.5-R0.1-SNAPSHOT/paper-api-1.16.5-R0.1-20210116.022558-1-sources.jar >paper-sources.jar
-          curl https://papermc.io/repo/repository/Sonatype-OSS-Proxy/net/md-5/bungeecord-chat/1.16-R0.3/bungeecord-chat-1.16-R0.3-sources.jar >chat-sources.jar
       - name: Generate patched Paper jar
         run: |
-          curl https://papermc.io/api/v1/paper/1.16.4/350/download >paperclip.jar
-          java -jar paperclip.jar || true # Will crash due to missing EULA; we WANT that
-          mv cache/patched_1.16.4.jar paper.jar
-      - name: Generate Paper types
-        run: >-
-          java -jar java-ts-bind-all.jar
-          --in paper-sources.jar --out types --symbols paper.jar
+          curl https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/602/downloads/paper-1.16.5-602.jar >paperclip.jar
+          java -jar paperclip.jar || true # Will crash due to missing EULA; we WANT that to happen
+          mv cache/patched_1.16.5.jar paper_symbols.jar
       - name: Generate Bungeecord Chat types
-        run: >-
-          java -jar java-ts-bind-all.jar
-          --in chat-sources.jar --out types --symbols paper.jar
+        run: |
+          java -jar java-ts-bind-all.jar --packageJson bungeecord-chat/package.json
+          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" bungeecord-chat/package.json
+      - name: Generate Paper types
+        run: |
+          java -jar java-ts-bind-all.jar --packageJson paper/package.json
+          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" paper/package.json
       - uses: actions/setup-node@master
         with:
           registry-url: 'https://registry.npmjs.org'
         if: github.ref == 'refs/heads/master'
       - name: Publish to npm
         run: |
-          sed -i "s/VERSION/1.16.5-$(git rev-parse --short $GITHUB_SHA)/g" types/package.json
-          npm publish --access=public types
+          npm publish --access=public bungeecord-chat
+          npm publish --access=public paper
         if: github.ref == 'refs/heads/master'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
