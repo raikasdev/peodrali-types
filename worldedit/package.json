@@ -1,0 +1,20 @@
+{
+  "name": "@craftjs-types/worldedit",
+  "version": "7.2.5-GIT_SHA",
+  "description": "WorldEdit 7 types",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Valtakausi/craftjs-types.git",
+    "directory": "worldedit"
+  },
+  "author": "bensku",
+  "dependencies": {
+    "@craftjs-types/paper": "latest"
+  },
+  "tsbindOptions": {
+    "artifact": "com.sk89q.worldedit:worldedit-bukkit:7.2.5",
+    "repos": ["https://maven.enginehub.org/repo", "https://papermc.io/repo/repository/maven-public"],
+    "out": "worldedit",
+    "index": true
+  }
+}

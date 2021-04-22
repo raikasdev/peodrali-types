@@ -18,19 +18,26 @@ jobs:
       - name: Generate Bungeecord Chat types
         run: |
           java -jar java-ts-bind-all.jar --packageJson bungeecord-chat/package.json
-          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" bungeecord-chat/package.json
       - name: Generate Paper types
         run: |
           java -jar java-ts-bind-all.jar --packageJson paper/package.json
-          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" paper/package.json
+      - name: Generate WorldEdit types
+        run: |
+          java -jar java-ts-bind-all.jar --packageJson worldedit/package.json
+      - name: Generate WorldGuard types
+        run: |
+          java -jar java-ts-bind-all.jar --packageJson worldguard/package.json
       - uses: actions/setup-node@master
         with:
           registry-url: 'https://registry.npmjs.org'
         if: github.ref == 'refs/heads/master'
       - name: Publish to npm
         run: |
+          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" */package.json || true # Fails for .github otherwise
           npm publish --access=public bungeecord-chat
           npm publish --access=public paper
+          npm publish --access=public worldedit
+          npm publish --access=public worldguard
         if: github.ref == 'refs/heads/master'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

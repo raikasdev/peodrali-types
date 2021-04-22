@@ -1,0 +1,21 @@
+{
+  "name": "@craftjs-types/worldguard",
+  "version": "7.0.4-GIT_SHA",
+  "description": "WorldGuard 7 types",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Valtakausi/craftjs-types.git",
+    "directory": "worldguard"
+  },
+  "author": "bensku",
+  "dependencies": {
+    "@craftjs-types/paper": "latest",
+    "@craftjs-types/worldedit": "latest"
+  },
+  "tsbindOptions": {
+    "artifact": "com.sk89q.worldguard:worldguard-bukkit:7.0.4",
+    "repos": ["https://maven.enginehub.org/repo", "https://papermc.io/repo/repository/maven-public"],
+    "out": "worldguard",
+    "index": true
+  }
+}
