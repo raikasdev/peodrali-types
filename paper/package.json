@@ -13,7 +13,7 @@
     "@craftjs-types/bungeecord-chat": "latest"
   },
   "tsbindOptions": {
-    "artifact": "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT",
+    "artifacts": ["com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"],
     "repos": ["https://papermc.io/repo/repository/maven-public"],
     "out": "paper",
     "symbols": ["paper_symbols.jar"],

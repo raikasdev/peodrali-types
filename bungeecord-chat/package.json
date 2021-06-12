@@ -12,7 +12,7 @@
     "@craftjs-types/java.base": "latest"
   },
   "tsbindOptions": {
-    "artifact": "net.md-5:bungeecord-chat:1.16-R0.4",
+    "artifacts": ["net.md-5:bungeecord-chat:1.16-R0.4"],
     "out": "bungeecord-chat",
     "index": true
   }
