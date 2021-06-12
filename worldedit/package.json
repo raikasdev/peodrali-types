@@ -12,9 +12,14 @@
     "@craftjs-types/paper": "latest"
   },
   "tsbindOptions": {
-    "artifact": "com.sk89q.worldedit:worldedit-bukkit:7.2.5",
+    "artifacts": ["com.sk89q.worldedit:worldedit-core:7.2.5", "com.sk89q.worldedit:worldedit-bukkit:7.2.5"],
     "repos": ["https://maven.enginehub.org/repo", "https://papermc.io/repo/repository/maven-public"],
     "out": "worldedit",
-    "index": true
+    "index": true,
+    "exclude": [
+      "com.sk89q.worldedit.command",
+      "com.sk89q.worldedit.internal",
+      "com.sk89q.minecraft.util.commands"
+    ]
   }
 }
