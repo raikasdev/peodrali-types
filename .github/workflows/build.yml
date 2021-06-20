@@ -9,12 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: 11
-      - name: Generate patched Paper jar
-        run: |
-          curl https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/602/downloads/paper-1.16.5-602.jar >paperclip.jar
-          java -jar paperclip.jar || true # Will crash due to missing EULA; we WANT that to happen
-          mv cache/patched_1.16.5.jar paper_symbols.jar
+          java-version: 16
       - name: Generate Bungeecord Chat types
         run: |
           java -jar java-ts-bind-all.jar --packageJson bungeecord-chat/package.json
