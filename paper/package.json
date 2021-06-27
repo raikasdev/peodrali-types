@@ -1,6 +1,6 @@
 {
   "name": "@craftjs-types/paper",
-  "version": "1.16.5-GIT_SHA",
+  "version": "1.17.0-GIT_SHA",
   "description": "Paper API types",
   "repository": {
     "type": "git",
