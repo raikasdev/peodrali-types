@@ -9,8 +9,7 @@
   },
   "author": "bensku",
   "dependencies": {
-    "@craftjs-types/java.base": "latest",
-    "@craftjs-types/bungeecord-chat": "latest"
+    "@craftjs-types/java.base": "latest"
   },
   "tsbindOptions": {
     "artifacts": ["io.papermc.paper:paper-api:1.17-R0.1-SNAPSHOT", "net.kyori:adventure-api:4.8.1", "net.kyori:adventure-key:4.8.1"],
