@@ -1,0 +1,20 @@
+{
+  "name": "peodrali-luckperms",
+  "version": "7.2.5-GIT_SHA",
+  "description": "LuckPerms types",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/raikasdev/peodrali-types.git",
+    "directory": "luckperms"
+  },
+  "author": "raikasdev",
+  "dependencies": {
+    "@craftjs-types/paper": "latest"
+  },
+  "tsbindOptions": {
+    "artifacts": ["net.luckperms:api:5.3"],
+    "repos": ["https://maven.enginehub.org/repo", "https://papermc.io/repo/repository/maven-public"],
+    "out": "luckperms",
+    "index": true
+  }
+}
