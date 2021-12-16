@@ -23,9 +23,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
         if: github.ref == 'refs/heads/master'
       - name: Publish to npm
-        run: |
-          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" */package.json || true # Fails for .github otherwise
-          npm publish luckperms --access=public 
+        run: npm publish luckperms --access=public 
         if: github.ref == 'refs/heads/master'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
