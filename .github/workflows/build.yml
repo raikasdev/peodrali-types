@@ -25,7 +25,6 @@ jobs:
       - name: Publish to npm
         run: |
           sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" */package.json || true # Fails for .github otherwise
-          npm publish --access=public gsit
           npm publish --access=public luckperms
         if: github.ref == 'refs/heads/master'
         env:
