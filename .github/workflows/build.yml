@@ -23,7 +23,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
         if: github.ref == 'refs/heads/master'
       - name: Publish to npm
-        run: npm publish luckperms --access=public 
+        run: npm publish luckperms
         if: github.ref == 'refs/heads/master'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
