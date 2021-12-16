@@ -14,10 +14,10 @@ jobs:
           java-version: 16
       # - name: Generate GSit Chat types
       #   run: |
-      #    java -jar java-ts-bind-all.jar --packageJson bungeecord-chat/package.json
+      #    java -jar java-ts-bind-all.jar --packageJson gsit/package.json
       - name: Generate LuckPerms types
         run: |
-          java -jar java-ts-bind-all.jar --packageJson worldedit/package.json
+          java -jar java-ts-bind-all.jar --packageJson luckperms/package.json
       - uses: actions/setup-node@master
         with:
           registry-url: 'https://registry.npmjs.org'
