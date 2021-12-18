@@ -14,19 +14,17 @@ jobs:
           java-version: 16
       # - name: Generate GSit Chat types
       #   run: |
-      #    java -jar java-ts-bind-all.jar --packageJson bungeecord-chat/package.json
+      #    java -jar java-ts-bind-all.jar --packageJson gsit/package.json
       - name: Generate LuckPerms types
         run: |
-          java -jar java-ts-bind-all.jar --packageJson worldedit/package.json
+          java -jar java-ts-bind-all.jar --packageJson luckperms/package.json
       - uses: actions/setup-node@master
         with:
           registry-url: 'https://registry.npmjs.org'
         if: github.ref == 'refs/heads/master'
       - name: Publish to npm
-        run: |
-          sed -i "s/GIT_SHA/$(git rev-parse --short $GITHUB_SHA)/g" */package.json || true # Fails for .github otherwise
-          npm publish --access=public gsit
-          npm publish --access=public luckperms
+        run: npm publish
+        working-directory: luckperms
         if: github.ref == 'refs/heads/master'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
